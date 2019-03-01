@@ -1,56 +1,56 @@
 const Router = require('koa-router')
 const body = require('koa-body')
+// const mongodb = require('mongodb');
+const db = require('../db/index')
 
-header("content-type:text/html;charset=utf-8");
 
 
 var router = new Router();
 
-router.post('/', (ctx, next) => {
-    let {user,psw,phone,mail,tar,tex} = ctx.request.body;
-        
-    ctx.body = ctx.request.body
+router.post('/',async (ctx, next) => {
+    let {user,psw,phone,mail,tar,tex} = ctx.request.body;       
     
-    const mysql = require('mysql');
+    let res = await db.insert('leidata',{user,psw,phone,mail,tar,tex})
 
-    //创建连接对象，并配置参数
-    var connection = mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: '',
-        database: 'backstage',
-        // charset:utf8
-    //      headers: {
-    //     'Content-Type': 'text/plain',
-    //     'Content-Encoding': 'identity',
-    //     'Charset': charset // 设置请求字符集编码
-    // }
-    });
+    ctx.body = res
+
+    // const mysql = require('mysql');
+    // //创建连接对象，并配置参数
+    // var connection = mysql.createConnection({
+    //     host: 'localhost',
+    //     user: 'root',
+    //     password: '',
+    //     database: 'backstage',
+    //     charset:'UTF8'
+    // });
 
     // 连接数据库
-    connection.connect();
-
+//     connection.connect();
+//    let num = {
+//         user,
+//         psw,
+//         phone,
+//         mail,
+//         tar,
+//         tex
+//     }
+//     let sql = `INSERT INTO username (username,password,phone,email,gender,Userdescription) VALUES ('${num.user}','${num.psw}','${num.phone}','${num.mail}','${num.tar}','${num.tex}') `
+//    console.log(sql)
+//     connection.query("set names 'utf8'" + sql, function (error, rows) {    
+//     });
+//     connection.end();
    
+   
+    // connection.query(`INSERT INTO username (username,password,phone,email,gender,Userdescription) VALUES ('${num.user}','${num.psw}','${num.phone}','${num.mail}','${num.tar}','${num.tex}') `, function (error, rows) {    
+    // });
+    // connection.end();
 
-   let num = {
-        user,
-        psw,
-        phone,
-        mail,
-        tar,
-        tex
-    }
+//     connection.query('SELECT * FROM username', function (error, rows) {  
+//         console.log(rows)
+//     });
+//     connection.end();
 
-
-
-    connection.query(`INSERT INTO username (username,password,phone,email,gender,Userdescription) VALUES ('${num.user}','${num.psw}','${num.phone}','${num.mail}','${num.tar}','${num.tex}') `, function (error, rows) {
-        
-    });
-
-   // 关闭连接,释放资源
-    connection.end();
-
-
+//   ctx.body = "数据上传成功"
 
 })
 
