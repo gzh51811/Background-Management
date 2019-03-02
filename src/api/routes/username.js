@@ -6,11 +6,11 @@ const db = require('../db/index')
 
 
 var router = new Router();
-
+ 
 router.post('/',async (ctx, next) => {
-    let {user,psw,phone,mail,tar,tex} = ctx.request.body;       
+    let {user,psw,phone,mail,tar,gl,tex} = ctx.request.body;       
     
-    let res = await db.insert('leidata',{user,psw,phone,mail,tar,tex})
+    let res = await db.insert('data',{user,psw,phone,mail,tar,gl,tex})
 
     ctx.body = res
 
@@ -52,6 +52,21 @@ router.post('/',async (ctx, next) => {
 
 //   ctx.body = "数据上传成功"
 
+})
+
+
+
+router.get('/',async (ctx, next) => {
+
+    let {user} = ctx.query;
+
+    let res = await db.find('data', { user });
+
+    if(res.length>0){
+        ctx.body = 'no'
+    }else{
+        ctx.body = 'yes'
+    }
 })
 
 module.exports = router

@@ -7,6 +7,7 @@
     <title>添加用户表</title>
     <!-- <link rel="stylesheet" href="../src/css/layui.css"> -->
     <link rel="stylesheet" href="../layui/layui/css/layui.css">
+    <script src="../js/common.js"></script>
     <script src="../js/jquery-1.10.1.min.js"></script>
     <script src="../layui/layui/layui.js"></script>
     <script src="../js/backstage.js"></script>
@@ -16,7 +17,7 @@
             position: relative;
             width: 607.2px;
             height: 618.4px;
-
+            /* color: rgb(238, 11, 11)     */
         }
         .layui-body .xxk {
             position: absolute;
@@ -29,7 +30,7 @@
             left: 55px;
         }
     </style>
-  
+
 </head>
 
 <body class="layui-layout-body">
@@ -82,70 +83,86 @@
             </div>
         </div>
 
-        <div class="layui-body" style="top:0px">
-            <div style="width:607.2px; height:618.4px;display:block" class="xxk">
-                <h2>添加用户</h2>
+        <div class="layui-body" style="top:0px;width:900px">
+            <div style="width:900px; height:618.4px;display:block" class="xxk">
+                      <h2>添加用户</h2>
                 <form class="layui-form" action="" style="margin-top:50px;">
                     <div class="layui-form-item">
                         <label class="layui-form-label">用户名</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名"
-                                autocomplete="off" class="layui-input user">
+                        <div class="layui-input-inline" style="width:487px">
+                            <input type="text" name="title1" lay-verify="required" autocomplete="off" placeholder="请输入字母开头且不少于6位数的用户名"
+                                class="layui-input user">
                         </div>
+                        <div class="uname"></div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">密码</label>
-                        <div class="layui-input-block">
-                            <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+                        <div class="layui-input-inline" style="width:487px">
+                            <input type="password" name="password" lay-verify="required" placeholder="请输入字母开头且不少于6位数的密码"
                                 autocomplete="off" class="layui-input psw">
                         </div>
+                        <div class="upsw"></div>
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">确认密码</label>
-                        <div class="layui-input-block">
-                            <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
-                                autocomplete="off" class="layui-input">
+                        <div class="layui-input-inline" style="width:487px">
+                            <input type="password" name="password" lay-verify="required" autocomplete="off" class="layui-input queinp">
                         </div>
+                        <!-- placeholder="请确认填写6到12位密码" -->
+                        <div class="quer"> </div>
                     </div>
+
                     <div class="layui-form-item">
                         <label class="layui-form-label">手机号码</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="phone" placeholder="请输入手机号码" class="layui-input hone">
+                            <input type="tel" name="phone" lay-verify="phone" autocomplete="off" class="layui-input hone">
                         </div>
-
+                        <div class="uhone"> </div>
                     </div>
-                    <div class="layui-form-item">
-                        <label class="layui-form-label">邮箱</label>
-                        <div class="layui-input-block">
-                            <input type="text" name="title" required lay-verify="required" placeholder="请输入邮箱"
-                                autocomplete="off" class="layui-input mail">
-                        </div>
+                    <div class="layui-form-item">     
+                            <label class="layui-form-label">邮箱</label>
+                            <div class="layui-input-inline" style="width:350px">
+                                <input type="text" name="email" lay-verify="email" autocomplete="off" class="layui-input mail">
+                            </div>
+                            <div class="umail"></div>               
                     </div>
                     <div class="layui-form-item">
                         <label class="layui-form-label">性别</label>
                         <div class="layui-input-block layui-input-inline" style="margin-left:0px">
                             <select name="city" lay-verify="required" class="tar">
-                                <option value=""></option>
+                                <option></option>
                                 <option value="男">男</option>
                                 <option value="女">女</option>
 
                             </select>
                         </div>
                     </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">管理权限</label>
+                        <div class="layui-input-block layui-input-inline" style="margin-left:0px">
+                            <select name="city" lay-verify="required" class="gl">
+                                <option></option>
+                                <option value="男">超级管理员</option>
+                                <option value="女">普通用户</option>
+
+                            </select>
+                        </div>
+                    </div>
+
+               
 
                     <div class="layui-form-item layui-form-text">
                         <label class="layui-form-label">用户描述</label>
                         <div class="layui-input-block">
-                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea tex"></textarea>
+                            <textarea name="desc" placeholder="请输入内容" class="layui-textarea tex" value="123"></textarea>
                         </div>
                     </div>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button class="layui-btn btn" lay-submit="" lay-filter="formDemo">立即提交</button>
                             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                         </div>
                     </div>
-
 
 
 
@@ -153,7 +170,7 @@
 
 
             </div>
-           
+
 
         </div>
 
@@ -165,10 +182,10 @@
     <!-- <script src="../src/layui.js"></script> -->
     <script>
         //JavaScript代码区域
-        layui.use('element', function () {
-            var element = layui.element;
+ // layui.use('element', function () {
+        //     var element = layui.element;
 
-        });
+        // });       
 
         layui.use('form', function () {
             var form = layui.form;

@@ -2,14 +2,17 @@
 const static = require('koa-static')
 const app =new koa();
 
-const routers = require('./api/index')
+const routers = require('./api/routes')
 
 //==========创建资源服务器及路由============================================================
 
-
+ 
 //创建资源服务器
+app.context.myname = 'leidata'
+
 
 app.use(static('./'))
+app.use(routers.allowedMethods());
 app.use(routers.routes())
 
 
